@@ -5,7 +5,7 @@ namespace NeptunesTreasure.Common
     /// <summary>
     /// 
     /// </summary>
-    public abstract class MagicTridentProj : ModProjectile
+    public abstract class MagicTridentProjectile : ModProjectile
     {
         private Vector2 MousePos = Vector2.Zero;
 

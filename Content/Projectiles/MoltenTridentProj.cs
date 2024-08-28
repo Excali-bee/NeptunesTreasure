@@ -8,7 +8,7 @@ namespace NeptunesTreasure.Content.Projectiles
     /// <summary>
     /// 
     /// </summary>
-    public class MoltenTridentProj : MagicTridentProj
+    public class MoltenTridentProj : MagicTridentProjectile
     {
         protected override float HoldoutRangeMax => 120f;
         public override void SetDefaults()

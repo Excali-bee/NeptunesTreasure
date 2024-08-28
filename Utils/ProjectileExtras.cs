@@ -79,23 +79,5 @@ namespace NeptunesTreasure.Utils
             projectile.Projectile.position.Y = player.Center.Y - (int)(Math.Sin(rad) * dist) - projectile.Projectile.height / 2;
             projectile.Projectile.ai[1] += speed;
         }
-
-        /// <summary>
-        /// Applies orbiting around any point to the projectile.
-        /// </summary>
-        /// <param name="projectile">The projectile to be affected.</param>
-        /// <param name="Center">The center around which the projectile will orbit.</param>
-        /// <param name="radius">The radius of the orbit.</param>
-        /// <param name="speed">The rotation speed of the projectile.</param>
-        public static void ApplyOrbitingAnything(ModProjectile projectile, Vector2 Center, float radius, float speed)
-        {
-            double deg = projectile.Projectile.ai[1];
-            double rad = deg * (Math.PI / 180);
-            double dist = radius;
-
-            projectile.Projectile.position.X = Center.X - (int)(Math.Cos(rad) * dist) - projectile.Projectile.width / 2;
-            projectile.Projectile.position.Y = Center.Y - (int)(Math.Sin(rad) * dist) - projectile.Projectile.height / 2;
-            projectile.Projectile.ai[1] += speed;
-        }
     }
 }

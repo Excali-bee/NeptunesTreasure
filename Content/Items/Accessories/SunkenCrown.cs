@@ -10,7 +10,7 @@ namespace NeptunesTreasure.Content.Items.Accessories
     /// <summary>
     /// Represents the Neptune Gift accessory item.
     /// </summary>
-    public class NeptuneGift : ModItem
+    public class SunkenCrown : ModItem
     {
         /// <summary>
         /// Sets the default properties of the Neptune Gift accessory item.
@@ -33,16 +33,16 @@ namespace NeptunesTreasure.Content.Items.Accessories
         /// <param name="hideVisual">Determines if the accessory's visual effects should be hidden.</param>
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-            player.GetModPlayer<NeptuneGiftPlayer>().hasNeptuneGift = true;
+            player.GetModPlayer<SunkenCrownPlayer>().hasSunkenCrown = true;
         }
     }
 
     /// <summary>
     /// Represents the player's effects when wearing the Neptune Gift accessory.
     /// </summary>
-    internal class NeptuneGiftPlayer : ModPlayer
+    internal class SunkenCrownPlayer : ModPlayer
     {
-        public bool hasNeptuneGift = false;
+        public bool hasSunkenCrown = false;
         private float timer;
         private int waterType = Utils.Water.GetRandomWater();
 
@@ -51,7 +51,7 @@ namespace NeptunesTreasure.Content.Items.Accessories
         /// </summary>
         public override void ResetEffects()
         {
-            hasNeptuneGift = false;
+            hasSunkenCrown = false;
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace NeptunesTreasure.Content.Items.Accessories
         /// </summary>
         public override void OnEnterWorld()
         {
-            if (hasNeptuneGift)
+            if (hasSunkenCrown)
             {
                 timer = 0;
             }
@@ -73,7 +73,7 @@ namespace NeptunesTreasure.Content.Items.Accessories
             const int cooldown = 600;
             const int waterBubbleCount = 40;
 
-            if (hasNeptuneGift)
+            if (hasSunkenCrown)
             {
                 if (timer >= cooldown)
                 {

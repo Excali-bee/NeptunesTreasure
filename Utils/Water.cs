@@ -43,6 +43,24 @@ namespace NeptunesTreasure.Utils
             };
         }
 
+        public static Color GetWaterColor(int style)
+        {
+            return style switch
+            {
+                Corruption => new Color(59, 29, 131),
+                Jungle => new Color(7, 145, 142),
+                Hallow => new Color(171, 11, 209),
+                Snow => new Color(9, 137, 191),
+                Desert => new Color(32, 168, 117),
+                Cavern => new Color(36, 60, 148),
+                Cavern2 => new Color(65, 59, 101),
+                BloodMoon => new Color(200, 0, 0),
+                Crimsom => new Color(177, 54, 79),
+                Desert2 => new Color(168, 106, 32),
+                _ => new Color(9, 61, 191), // Default
+            };
+        }
+
 
         /// <summary>
         /// Gets a random water type.

@@ -1,0 +1,73 @@
+Mods: {
+	NeptunesTreasure: {
+		Projectiles: {
+			UnholyTridentProj.DisplayName: Unholy Trident
+			TerraForkProj.DisplayName: Terra Fork
+			NeptuneFragment.DisplayName: Neptune Fragment
+			NebulaSpikeProj.DisplayName: Nebula Spike
+			MoltenTridentProj.DisplayName: Molten Trident
+			LeadTridentProj.DisplayName: Lead Trident
+			IronTridentProj.DisplayName: Iron Trident
+			HallowedTridentProj.DisplayName: Hallowed Trident
+			GalacticiteProj.DisplayName: Galacticite
+			AquaticShard.DisplayName: Aquatic Shard
+			AquaticArrow.DisplayName: Aquatic Arrow
+		}
+
+		Items: {
+			UnholyTrident: {
+				Tooltip: ""
+				DisplayName: Unholy Trident
+			}
+
+			TerraFork: {
+				Tooltip: ""
+				DisplayName: Terra Fork
+			}
+
+			NebulaSpike: {
+				Tooltip: ""
+				DisplayName: Nebula Spike
+			}
+
+			LeadTrident: {
+				Tooltip: ""
+				DisplayName: Lead Trident
+			}
+
+			IronTrident: {
+				Tooltip: ""
+				DisplayName: Iron Trident
+			}
+
+			HallowedTrident: {
+				Tooltip: ""
+				DisplayName: Hallowed Trident
+			}
+
+			Galacticite: {
+				Tooltip: ""
+				DisplayName: Galacticite
+			}
+
+			NeptuneGift: {
+				Tooltip: ""
+				DisplayName: Neptune Gift
+			}
+
+			Canteen: {
+				DisplayName: Canteen
+				Tooltip:
+					'''
+					When dropped into water, it absorbs the attributes of the water in that biome, 
+					making the effects of the tridents equivalent to the collected water.
+					'''
+			}
+
+			SunkenCrown: {
+				DisplayName: Sunken Crown
+				Tooltip: ""
+			}
+		}
+	}
+}

@@ -1,4 +1,8 @@
-﻿using NeptunesTreasure.Content.Projectiles;
+﻿using Microsoft.Xna.Framework;
+using NeptunesTreasure.Content.Projectiles;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ModLoader;
 
 namespace NeptunesTreasure.Common
 {

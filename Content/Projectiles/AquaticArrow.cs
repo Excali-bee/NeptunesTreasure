@@ -17,7 +17,6 @@ namespace NeptunesTreasure.Content.Projectiles
     public class AquaticArrow : ModProjectile
     {
         private bool EnterOnWater = false;
-        private bool happen = false;
         private bool active = false;
 
         public override void SetDefaults()
@@ -50,12 +49,11 @@ namespace NeptunesTreasure.Content.Projectiles
 
             Projectile.ai[0] = 0;
             Projectile.ai[1] = 0;
-            happen = false;
         }
         public override void AI()
         {
-            Dust dust = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterBubble>(), Vector2.Zero);
-            Lighting.AddLight(Projectile.position, dust.color.R / 255, dust.color.G / 255, dust.color.B / 255);
+            Dust waterBubble = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterBubble>(), Vector2.Zero);
+            Lighting.AddLight(Projectile.position, waterBubble.color.R / 255, waterBubble.color.G / 255, waterBubble.color.B / 255);
             Projectile.rotation = Projectile.velocity.ToRotation();
 
             WaterEffect();
@@ -164,7 +162,9 @@ namespace NeptunesTreasure.Content.Projectiles
             Player p = Main.player[Projectile.owner];
 
             float frequency = 0.2f; // Frequência do movimento senoidal
-            float amplitude = 2f; // Amplitude do movimento senoidal
+            float amplitude = 5f; // Amplitude do movimento senoidal
+            float direction = MathF.Atan2(Projectile.velocity.Y, Projectile.velocity.X);
+
 
             switch (Main.waterStyle)
             {
@@ -182,11 +182,21 @@ namespace NeptunesTreasure.Content.Projectiles
                     break;
                 case Water.Cavern:
                     Projectile.tileCollide = false;
-                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude;
+                    Projectile.position.X += Projectile.velocity.X / 1.5f;
+                    Projectile.position.Y += Projectile.velocity.Y / 1.5f;
+
+                    // Movimento de onda perpendicular à direção do disparo
+                    Projectile.position.X += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude * (float)Math.Cos(direction + MathF.PI / 2);
+                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude * (float)Math.Sin(direction + MathF.PI / 2);
                     break;
                 case Water.Cavern2:
                     Projectile.tileCollide = false;
-                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude;
+                    Projectile.position.X += Projectile.velocity.X / 1.5f;
+                    Projectile.position.Y += Projectile.velocity.Y / 1.5f;
+
+                    // Movimento de onda perpendicular à direção do disparo
+                    Projectile.position.X += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude * (float)Math.Cos(direction + MathF.PI / 2);
+                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude * (float)Math.Sin(direction + MathF.PI / 2);
                     break;
                 case Water.Snow:
                     Projectile.tileCollide = false;

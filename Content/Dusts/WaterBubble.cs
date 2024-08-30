@@ -18,9 +18,7 @@ namespace NeptunesTreasure.Content.Dusts
             dust.rotation += dust.velocity.X * 0.15f;
             dust.scale *= 0.95f;
 
-            float light = 0.35f * dust.scale;
-
-            Lighting.AddLight(dust.position, light, light, light);
+            Lighting.AddLight(dust.position, Water.GetWaterColor().R / 255, Water.GetWaterColor().G / 255, Water.GetWaterColor().B / 255);
 
             if (dust.scale <= 1f)
             {

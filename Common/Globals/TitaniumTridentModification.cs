@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Microsoft.Xna.Framework;
 
-namespace NeptunesTreasure.Common
+namespace NeptunesTreasure.Common.Globals
 {
     public class TitaniumTridentModification
     {

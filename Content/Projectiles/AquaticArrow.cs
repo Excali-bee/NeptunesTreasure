@@ -7,6 +7,9 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using NeptunesTreasure.Common.Interfaces;
+using System.Collections.Generic;
+using NeptunesTreasure.Content.Waters;
 
 namespace NeptunesTreasure.Content.Projectiles
 {
@@ -14,6 +17,7 @@ namespace NeptunesTreasure.Content.Projectiles
 
     public class AquaticArrow : ModProjectile
     {
+        private readonly List<IWater> Waters = [new JungleWater(), new CavernWater(), new DesertWater(), new SnowWater(), new HallowWater()];
         private bool EnterOnWater = false;
         private bool active = false;
 
@@ -31,32 +35,32 @@ namespace NeptunesTreasure.Content.Projectiles
         }
         public override Color? GetAlpha(Color lightColor) => Color.White;
 
-        //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
         public override void OnSpawn(IEntitySource source)
         {
-            SoundEngine.PlaySound(SoundID.Item21, Projectile.position);
-
-            switch (Main.waterStyle)
+            foreach (IWater water in Waters)
             {
-                case Water.Hallow:
-                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
-                    Projectile.NewProjectileDirect(new EntitySource_TileBreak(2, 2), Projectile.Center, Projectile.velocity.RotatedBy(-0.261799), ModContent.ProjectileType<AquaticShard>(), Projectile.damage / 3, Projectile.knockBack, Projectile.owner);
-                    break;
-                case Water.Jungle:
-                    Projectile.penetrate = 5;
-                    break;
-                case Water.Snow:
-                    Projectile.velocity *= 2;
-                    break;
+                if (water.GetWaterID().Contains(Main.waterStyle))
+                {
+                    water.OnSpawn(this);
+                }
             }
+
+            SoundEngine.PlaySound(SoundID.Item21, Projectile.position);
         }
+
         public override void AI()
         {
+            foreach (IWater water in Waters)
+            {
+                if (water.GetWaterID().Contains(Main.waterStyle))
+                {
+                    water.AI(this);
+                }
+            }
+
             Dust waterBubble = Dust.NewDustPerfect(Projectile.position, ModContent.DustType<WaterBubble>(), Vector2.Zero);
             Lighting.AddLight(Projectile.position, waterBubble.color.R / 255, waterBubble.color.G / 255, waterBubble.color.B / 255);
             Projectile.rotation = Projectile.velocity.ToRotation();
-
-            WaterEffect();
 
             if (Projectile.wet)
             {
@@ -73,6 +77,7 @@ namespace NeptunesTreasure.Content.Projectiles
                 Empower();
             }
         }
+
         public override void OnKill(int timeLeft)
         {
             for (int i = 0; i < 40; i++)
@@ -89,25 +94,27 @@ namespace NeptunesTreasure.Content.Projectiles
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
         {
-            Player p = Main.player[Projectile.owner];
-
-            if (target.life <= 0 && (Main.waterStyle is Water.Crimsom || Main.waterStyle is Water.BloodMoon))
+            foreach (IWater water in Waters)
             {
-                p.Heal((p.statDefense / 20) + 1);
+                if (water.GetWaterID().Contains(Main.waterStyle))
+                {
+                    water.OnHitNPC(proj: this, target);
+                }
             }
         }
 
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            if (Main.waterStyle is Water.Jungle)
+            foreach (IWater water in Waters)
             {
-                ProjectileExtras.ApplyBounce(this, oldVelocity);
-                return false;
+                if (water.GetWaterID().Contains(Main.waterStyle))
+                {
+                    water.OnTileCollide(proj: this, oldVelocity);
+                }
             }
 
-            return base.OnTileCollide(oldVelocity);
+            return OnTileCollide(oldVelocity);
         }
-
         private void HomingProjectile()
         {
             Vector2 move = Vector2.Zero;
@@ -150,55 +157,6 @@ namespace NeptunesTreasure.Content.Projectiles
                 Vector2 speed = Main.rand.NextVector2CircularEdge(1f, 1f);
                 Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterBubble>(), speed * 5);
                 d.noGravity = true;
-            }
-        }
-        private void WaterEffect()
-        {
-            Player p = Main.player[Projectile.owner];
-
-            float frequency = 0.2f; // Frequência do movimento senoidal
-            float amplitude = 5f; // Amplitude do movimento senoidal
-            float direction = MathF.Atan2(Projectile.velocity.Y, Projectile.velocity.X);
-
-
-            switch (Main.waterStyle)
-            {
-                case Water.Jungle:
-                    Projectile.tileCollide = true;
-                    Projectile.velocity.Y = ProjectileExtras.ApplyGravity(Projectile.velocity.Y);
-                    break;
-                case Water.Desert:
-                    ProjectileExtras.ApplyOrbitingPlayer(this, p, 64, 1.5f);
-                    Projectile.tileCollide = false;
-                    break;
-                case Water.Desert2:
-                    ProjectileExtras.ApplyOrbitingPlayer(this, p, 64, 1.5f);
-                    Projectile.tileCollide = false;
-                    break;
-                case Water.Cavern:
-                    Projectile.tileCollide = false;
-                    Projectile.position.X += Projectile.velocity.X / 1.5f;
-                    Projectile.position.Y += Projectile.velocity.Y / 1.5f;
-
-                    // Movimento de onda perpendicular à direção do disparo
-                    Projectile.position.X += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude * (float)Math.Cos(direction + MathF.PI / 2);
-                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude * (float)Math.Sin(direction + MathF.PI / 2);
-                    break;
-                case Water.Cavern2:
-                    Projectile.tileCollide = false;
-                    Projectile.position.X += Projectile.velocity.X / 1.5f;
-                    Projectile.position.Y += Projectile.velocity.Y / 1.5f;
-
-                    // Movimento de onda perpendicular à direção do disparo
-                    Projectile.position.X += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude * (float)Math.Cos(direction + MathF.PI / 2);
-                    Projectile.position.Y += (float)Math.Sin(Projectile.timeLeft * frequency) * amplitude * (float)Math.Sin(direction + MathF.PI / 2);
-                    break;
-                case Water.Snow:
-                    Projectile.tileCollide = false;
-                    Projectile.aiStyle = ProjAIStyleID.Boomerang;
-                    Projectile.timeLeft = 1200;
-                    Projectile.penetrate = 200;
-                    break;
             }
         }
         private void Empower()

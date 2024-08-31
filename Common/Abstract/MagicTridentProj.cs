@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Common
+namespace NeptunesTreasure.Common.Abstract
 {
     /// <summary>
     /// 

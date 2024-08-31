@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using NeptunesTreasure.Common;
+using NeptunesTreasure.Common.Abstract;
 
 namespace NeptunesTreasure.Content.Projectiles
 {

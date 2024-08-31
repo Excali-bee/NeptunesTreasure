@@ -11,14 +11,15 @@ namespace NeptunesTreasure.Content.Items.Weapons
         public override void SetDefaults()
         {
             // Item settings
-            Item.damage = 12;
+            Item.damage = 186;
             Item.knockBack = 6.5f;
             Item.mana = 5;
             Item.rare = ItemRarityID.White;
             Item.value = Item.sellPrice(silver: 10);
             Item.shoot = ModContent.ProjectileType<NebulaSpikeProj>();
-            Item.useAnimation = 31;
-            Item.useTime = 31;
+            Item.useAnimation = 28;
+            Item.useTime = 28;
+            Item.rare = ItemRarityID.Red;
 
             // Texture settings
             Item.width = 44;

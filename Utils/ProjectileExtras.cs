@@ -71,7 +71,7 @@ namespace NeptunesTreasure.Utils
         /// <param name="speed">The rotation speed of the projectile.</param>
         public static void ApplyOrbitingPlayer(ModProjectile projectile, Player player, float radius, float speed)
         {
-            double deg = (double)projectile.Projectile.ai[1];
+            double deg = projectile.Projectile.ai[1];
             double rad = deg * (Math.PI / 180);
             double dist = radius;
 
@@ -80,22 +80,16 @@ namespace NeptunesTreasure.Utils
             projectile.Projectile.ai[1] += speed;
         }
 
-        /// <summary>
-        /// Applies orbiting around any point to the projectile.
-        /// </summary>
-        /// <param name="projectile">The projectile to be affected.</param>
-        /// <param name="Center">The center around which the projectile will orbit.</param>
-        /// <param name="radius">The radius of the orbit.</param>
-        /// <param name="speed">The rotation speed of the projectile.</param>
-        public static void ApplyOrbitingAnything(ModProjectile projectile, Vector2 Center, float radius, float speed)
+        public static void ApplyWaveMovement(ModProjectile proj, float frequency = 0.2f, float amplitude = 5f)
         {
-            double deg = projectile.Projectile.ai[1];
-            double rad = deg * (Math.PI / 180);
-            double dist = radius;
+            float direction = MathF.Atan2(proj.Projectile.velocity.Y, proj.Projectile.velocity.X);
 
-            projectile.Projectile.position.X = Center.X - (int)(Math.Cos(rad) * dist) - projectile.Projectile.width / 2;
-            projectile.Projectile.position.Y = Center.Y - (int)(Math.Sin(rad) * dist) - projectile.Projectile.height / 2;
-            projectile.Projectile.ai[1] += speed;
+            proj.Projectile.position.X += proj.Projectile.velocity.X / 1.5f;
+            proj.Projectile.position.Y += proj.Projectile.velocity.Y / 1.5f;
+
+            // Movement formula
+            proj.Projectile.position.X += (float)Math.Sin(proj.Projectile.timeLeft * frequency) * amplitude * (float)Math.Cos(direction + MathF.PI / 2);
+            proj.Projectile.position.Y += (float)Math.Sin(proj.Projectile.timeLeft * frequency) * amplitude * (float)Math.Sin(direction + MathF.PI / 2);
         }
     }
 }

@@ -5,7 +5,7 @@ using Terraria;
 using Microsoft.Xna.Framework;
 using NeptunesTreasure.Content.Projectiles;
 
-namespace NeptunesTreasure.Common
+namespace NeptunesTreasure.Common.Globals
 {
     /// <summary>
     /// 

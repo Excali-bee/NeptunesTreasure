@@ -10,6 +10,7 @@ namespace NeptunesTreasure.Utils
         /// <summary>
         /// Represents the different types of water in the game.
         /// </summary>
+        public const int Surface = 1;
         public const int Corruption = 2;
         public const int Jungle = 3;
         public const int Hallow = 4;
@@ -43,6 +44,11 @@ namespace NeptunesTreasure.Utils
             };
         }
 
+        /// <summary>
+        /// Gets the color of the water based on the style.
+        /// </summary>
+        /// <param name="style"> Id of water </param>
+        /// <returns>return a color of water</returns>
         public static Color GetWaterColor(int style)
         {
             return style switch
@@ -57,7 +63,7 @@ namespace NeptunesTreasure.Utils
                 BloodMoon => new Color(200, 0, 0),
                 Crimsom => new Color(177, 54, 79),
                 Desert2 => new Color(168, 106, 32),
-                _ => new Color(9, 61, 191), // Default
+                _ => new Color(9, 61, 191),
             };
         }
 
@@ -71,6 +77,11 @@ namespace NeptunesTreasure.Utils
             return Main.rand.Next(2, 13);
         }
 
+        /// <summary>
+        /// Gets the name of the water based on the style.
+        /// </summary>
+        /// <param name="style"></param>
+        /// <returns></returns>
         public static string GetWaterName(int style)
         {
             return style switch

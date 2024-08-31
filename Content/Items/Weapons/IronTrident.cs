@@ -31,7 +31,7 @@ namespace NeptunesTreasure.Content.Items.Weapons
             Item.DamageType = DamageClass.Magic;
             Item.noMelee = true;
             Item.noUseGraphic = true;
-            Item.autoReuse = true;
+            Item.autoReuse = false;
             Item.UseSound = SoundID.Item71;
         }
 

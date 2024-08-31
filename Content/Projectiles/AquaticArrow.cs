@@ -10,9 +10,7 @@ using Terraria.ModLoader;
 
 namespace NeptunesTreasure.Content.Projectiles
 {
-    //TODO: CRIMSOM -> Projétil Rouba vida
     //TODO: CORRUPTION -> Pensar em algo
-    //TODO: Blood MOON -> Projétil Rouba vida
 
     public class AquaticArrow : ModProjectile
     {
@@ -36,6 +34,8 @@ namespace NeptunesTreasure.Content.Projectiles
         //<summary> when the projectile enter in the water, transform to a homing projectile </summary>
         public override void OnSpawn(IEntitySource source)
         {
+            SoundEngine.PlaySound(SoundID.Item21, Projectile.position);
+
             switch (Main.waterStyle)
             {
                 case Water.Hallow:
@@ -45,10 +45,10 @@ namespace NeptunesTreasure.Content.Projectiles
                 case Water.Jungle:
                     Projectile.penetrate = 5;
                     break;
+                case Water.Snow:
+                    Projectile.velocity *= 2;
+                    break;
             }
-
-            Projectile.ai[0] = 0;
-            Projectile.ai[1] = 0;
         }
         public override void AI()
         {
@@ -72,13 +72,6 @@ namespace NeptunesTreasure.Content.Projectiles
             {
                 Empower();
             }
-
-            if (Projectile.soundDelay == 0 && Math.Abs(Projectile.velocity.X) + Math.Abs(Projectile.velocity.Y) > 2f)
-            {
-                Projectile.soundDelay = Helper.Ticks(1);
-                SoundEngine.PlaySound(SoundID.Item9, Projectile.position);
-            }
-
         }
         public override void OnKill(int timeLeft)
         {
@@ -90,6 +83,8 @@ namespace NeptunesTreasure.Content.Projectiles
 
                 Lighting.AddLight(Projectile.position, Water.GetWaterColor().ToVector3());
             }
+
+            SoundEngine.PlaySound(SoundID.Item10, Projectile.position);
         }
 
         public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
@@ -98,7 +93,7 @@ namespace NeptunesTreasure.Content.Projectiles
 
             if (target.life <= 0 && (Main.waterStyle is Water.Crimsom || Main.waterStyle is Water.BloodMoon))
             {
-                p.Heal(Projectile.damage / 10);
+                p.Heal((p.statDefense / 20) + 1);
             }
         }
 

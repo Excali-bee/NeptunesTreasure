@@ -70,5 +70,23 @@ namespace NeptunesTreasure.Utils
         {
             return Main.rand.Next(2, 13);
         }
+
+        public static string GetWaterName(int style)
+        {
+            return style switch
+            {
+                Corruption => "Corruption Water",
+                Jungle => "Jungle Water ",
+                Hallow => "Hallow Water",
+                Snow => "Snow Water",
+                Desert => "Desert Water",
+                Cavern => "Cavern Water",
+                Cavern2 => "Cavern Water",
+                BloodMoon => "BloodMoon Water",
+                Crimsom => "Crimsom Water",
+                Desert2 => "Desert Water",
+                _ => "Empty",
+            };
+        }
     }
 }

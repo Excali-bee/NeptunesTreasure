@@ -71,3 +71,64 @@ Mods: {
 		}
 	}
 }
+
+Projectiles: {
+	NeptuneFragment.DisplayName: Neptune Fragment
+	NebulaSpikeProj.DisplayName: Nebula Spike Proj
+	MoltenTridentProj.DisplayName: Molten Trident Proj
+	LeadTridentProj.DisplayName: Lead Trident Proj
+	IronTridentProj.DisplayName: Iron Trident Proj
+	HallowedTridentProj.DisplayName: Hallowed Trident Proj
+	GalacticiteProj.DisplayName: Galacticite Proj
+	AquaticShard.DisplayName: Aquatic Shard
+	AquaticArrow.DisplayName: Aquatic Arrow
+	TerraForkProj.DisplayName: Terra Fork Proj
+	UnholyTridentProj.DisplayName: Unholy Trident Proj
+}
+
+Items: {
+	UnholyTrident: {
+		Tooltip: ""
+		DisplayName: Unholy Trident
+	}
+
+	TerraFork: {
+		Tooltip: ""
+		DisplayName: Terra Fork
+	}
+
+	NebulaSpike: {
+		Tooltip: ""
+		DisplayName: Nebula Spike
+	}
+
+	LeadTrident: {
+		Tooltip: ""
+		DisplayName: Lead Trident
+	}
+
+	IronTrident: {
+		Tooltip: ""
+		DisplayName: Iron Trident
+	}
+
+	HallowedTrident: {
+		Tooltip: ""
+		DisplayName: Hallowed Trident
+	}
+
+	Galacticite: {
+		Tooltip: ""
+		DisplayName: Galacticite
+	}
+
+	SunkenCrown: {
+		Tooltip: ""
+		DisplayName: Sunken Crown
+	}
+
+	Canteen: {
+		Tooltip: ""
+		DisplayName: Canteen
+	}
+}

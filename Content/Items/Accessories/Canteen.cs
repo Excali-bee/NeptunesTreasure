@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader.IO;
+using System.Collections.Generic;
 
 namespace NeptunesTreasure.Content.Items.Accessories
 {
@@ -27,16 +28,16 @@ namespace NeptunesTreasure.Content.Items.Accessories
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ItemID.WaterBucket,3)
-                .AddIngredient(ItemID.Silk,50)
-                .AddIngredient(ItemID.BlackLens,1)
+                .AddIngredient(ItemID.WaterBucket, 3)
+                .AddIngredient(ItemID.Silk, 50)
+                .AddIngredient(ItemID.BlackLens, 1)
                 .AddTile(TileID.WorkBenches)
                 .Register();
         }
 
         public override void Update(ref float gravity, ref float maxFallSpeed)
         {
-            if(Item.wet)
+            if (Item.wet)
             {
                 WaterContent = Main.waterStyle;
             }
@@ -50,20 +51,19 @@ namespace NeptunesTreasure.Content.Items.Accessories
             }
         }
 
-        public override void LoadData(TagCompound tag)
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            tag.TryGet("WaterContent", out WaterContent);
-        }
-
-        public override void SaveData(TagCompound tag)
-        {
-            tag.Set("WaterContent", WaterContent);
+            TooltipLine line = new(Mod, "Face", $"Content: {Water.GetWaterName(WaterContent)}")
+            {
+                OverrideColor = new Color(100, 100, 255)
+            };
+            tooltips.Add(line);
         }
 
         public override void PostDrawInInventory(SpriteBatch spriteBatch, Vector2 position, Rectangle frame, Color drawColor, Color itemColor, Vector2 origin, float scale)
         {
             Texture2D waterIcon = ModContent.Request<Texture2D>("NeptunesTreasure/Common/Textures/WaterIcon").Value;
-            Vector2 offset = new (+21, -4);
+            Vector2 offset = new(+21, -4);
 
             //If the canteen is empty, the water color is white
             if (WaterContent is 0)
@@ -77,5 +77,17 @@ namespace NeptunesTreasure.Content.Items.Accessories
 
             spriteBatch.Draw(waterIcon, position + offset, null, WaterColor, 0f, origin, scale, SpriteEffects.None, 1f);
         }
+
+        #region Saving and Loading
+        public override void LoadData(TagCompound tag)
+        {
+            tag.TryGet("WaterContent", out WaterContent);
+        }
+
+        public override void SaveData(TagCompound tag)
+        {
+            tag.Set("WaterContent", WaterContent);
+        }
+        #endregion
     }
 }

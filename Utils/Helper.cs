@@ -1,4 +1,4 @@
-﻿namespace NeptunesTreasure.Utils
+﻿namespace TritonsHydrants.Utils
 {
     public static class Helper
     {

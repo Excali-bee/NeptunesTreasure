@@ -1,10 +1,10 @@
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
-using NeptunesTreasure.Content.Projectiles;
+using TritonsHydrants.Content.Projectiles;
 using Terraria.Audio;
 
-namespace NeptunesTreasure.Content.Items.Weapons
+namespace TritonsHydrants.Content.Items.Weapons
 {
     public class NebulaSpike : ModItem
     {

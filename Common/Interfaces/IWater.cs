@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Common.Interfaces
+namespace TritonsHydrants.Common.Interfaces
 {
     public interface IWater
     {

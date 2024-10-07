@@ -1,5 +1,5 @@
-﻿using NeptunesTreasure.Content.Dusts;
-using NeptunesTreasure.Utils;
+﻿using TritonsHydrants.Content.Dusts;
+using TritonsHydrants.Utils;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -7,11 +7,11 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using NeptunesTreasure.Common.Interfaces;
+using TritonsHydrants.Common.Interfaces;
 using System.Collections.Generic;
-using NeptunesTreasure.Content.Waters;
+using TritonsHydrants.Content.Waters;
 
-namespace NeptunesTreasure.Content.Projectiles
+namespace TritonsHydrants.Content.Projectiles
 {
     //TODO: CORRUPTION -> Pensar em algo
 
@@ -80,7 +80,7 @@ namespace NeptunesTreasure.Content.Projectiles
 
         public override void OnKill(int timeLeft)
         {
-            for (int i = 0; i < 40; i++)
+            for (int i = 0; i < 25; i++)
             {
                 Vector2 speed = Main.rand.NextVector2Circular(0.5f, 0.5f);
                 Dust d = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<WaterBubble>(), speed * 5);

@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using NeptunesTreasure.Common.Interfaces;
-using NeptunesTreasure.Utils;
+using TritonsHydrants.Common.Interfaces;
+using TritonsHydrants.Utils;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Content.Waters
+namespace TritonsHydrants.Content.Waters
 {
     public class SnowWater() : IWater
     {

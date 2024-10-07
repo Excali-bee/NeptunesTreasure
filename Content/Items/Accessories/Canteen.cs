@@ -1,4 +1,4 @@
-﻿using NeptunesTreasure.Utils;
+﻿using TritonsHydrants.Utils;
 using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader.IO;
 using System.Collections.Generic;
 
-namespace NeptunesTreasure.Content.Items.Accessories
+namespace TritonsHydrants.Content.Items.Accessories
 {
     public class Canteen : ModItem
     {

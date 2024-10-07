@@ -2,7 +2,7 @@ using Terraria.ID;
 using Terraria;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Content.Items.Weapons
+namespace TritonsHydrants.Content.Items.Weapons
 {
     public class TerraFork : ModItem
     {

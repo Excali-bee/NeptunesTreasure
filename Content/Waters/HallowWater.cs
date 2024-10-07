@@ -1,13 +1,13 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using NeptunesTreasure.Common.Interfaces;
-using NeptunesTreasure.Content.Projectiles;
-using NeptunesTreasure.Utils;
+using TritonsHydrants.Common.Interfaces;
+using TritonsHydrants.Content.Projectiles;
+using TritonsHydrants.Utils;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Content.Waters
+namespace TritonsHydrants.Content.Waters
 {
     public class HallowWater() : IWater
     {

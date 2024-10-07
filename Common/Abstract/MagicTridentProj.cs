@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using NeptunesTreasure.Content.Projectiles;
+using TritonsHydrants.Content.Projectiles;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
-namespace NeptunesTreasure.Common.Abstract
+namespace TritonsHydrants.Common.Abstract
 {
     /// <summary>
     /// 

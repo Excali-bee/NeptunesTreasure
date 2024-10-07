@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
 	<!-- Import tModLoader mod properties -->
 	<Import Project="..\tModLoader.targets" />
 
@@ -21,5 +20,4 @@
 	<ItemGroup>
 	  <Folder Include="Common\Textures\" />
 	</ItemGroup>
-
 </Project>
